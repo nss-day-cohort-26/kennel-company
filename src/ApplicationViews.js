@@ -8,19 +8,29 @@ import Location from "./Location";
 import Employee from "./Employee";
 import Login from "./Login"
 import EditAnimal from "./EditAnimal"
+import Auth from "./Auth/Auth"
+
+const auth = new Auth()
+
+const handleAuthentication = ({location}) => {
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
+  }
+}
+
+const { isAuthenticated } = auth
 
 export default class ApplicationViews extends Component {
 // Check if credentials are in local storage
-  isAuthenticated = () => localStorage.getItem("credentials") !== null
 
   render() {
     return (
       <React.Fragment>
         <Route exact path="/" render={props => {
-    if (this.isAuthenticated()) {
+    if (isAuthenticated()) {
         return <LocationList />
     } else {
-        return <Login {...props}/>
+        return <Login auth={auth} {...props}/>
     }
 }} />
         <Route path="/locations/:locationId" render={(props) => {
@@ -42,6 +52,10 @@ export default class ApplicationViews extends Component {
     </Employee>
 }} />
         <Route path="/login" component={Login} />
+        <Route path="/callback" render={(props) => {
+          handleAuthentication(props)
+          return <LocationList {...props} />
+        }} />
         
       </React.Fragment>
     );

@@ -53,5 +53,20 @@
       "name": "Checkers"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "sub": "google-oauth2|117583915874457302834",
+      "id": 1
+    },
+    {
+      "sub": "auth0|5b6b1b20e54355613fd3ef4b",
+      "id": 2
+    },
+    {
+      "sub": "auth0|5b6b2264905b2d2efbb8fca6",
+      "email": "fireflower789@yahoo.com",
+      "email_verified": false,
+      "id": 3
+    }
+  ]
 }
