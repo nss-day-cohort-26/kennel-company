@@ -20,3 +20,5 @@ kennel.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/src/Auth/auth0-variables.js
